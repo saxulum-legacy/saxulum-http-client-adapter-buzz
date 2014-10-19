@@ -24,11 +24,13 @@ use Saxulum\HttpClient\Buzz\HttpClient;
 use Saxulum\HttpClient\Request;
 
 $httpClient = new HttpClient();
-
 $response = $httpClient->request(new Request(
     '1.1',
     Request::METHOD_GET,
-    'http://en.wikipedia.org'
+    'http://www.wikipedia.org',
+    array(
+        'Connection' => 'close',
+    )
 ));
 ```
 
