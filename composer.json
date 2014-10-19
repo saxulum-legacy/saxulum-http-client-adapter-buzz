@@ -1,0 +1,26 @@
+{
+  "name": "saxulum/saxulum-http-client-adapter-buzz",
+  "description": "Saxulum Http Client Adapter Buzz",
+  "keywords": ["saxulum", "http", "http-client", "client", "adapter", "buzz"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dominik Zogg",
+      "email": "dominik.zogg@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3",
+    "kriswallsmith/buzz": "~0.13",
+    "saxulum/saxulum-http-client-interface": "~1.0@beta"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "provide": {
+    "saxulum/saxulum-http-client-adapter": "self.version"
+  },
+  "autoload": {
+    "psr-0": { "Saxulum\\HttpClient\\Buzz": "src/" }
+  }
+}
