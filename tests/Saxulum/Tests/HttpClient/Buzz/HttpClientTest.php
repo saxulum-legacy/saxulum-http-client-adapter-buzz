@@ -14,7 +14,10 @@ class HttpClientTest extends \PHPUnit_Framework_TestCase
         $response = $httpClient->request(new Request(
             '1.1',
             Request::METHOD_GET,
-            'http://en.wikipedia.org'
+            'http://en.wikipedia.org',
+            array(
+                'Connection' => 'close',
+            )
         ));
 
         $this->assertEquals(200, $response->getStatusCode());

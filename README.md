@@ -27,7 +27,7 @@ $httpClient = new HttpClient();
 $response = $httpClient->request(new Request(
     '1.1',
     Request::METHOD_GET,
-    'http://www.wikipedia.org',
+    'http://en.wikipedia.org',
     array(
         'Connection' => 'close',
     )
