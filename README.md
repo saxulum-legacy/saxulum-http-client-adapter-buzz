@@ -12,6 +12,7 @@
 ## Requirements
 
  * PHP 5.3+
+ * Buzz ~0.13
 
 ## Installation
 
