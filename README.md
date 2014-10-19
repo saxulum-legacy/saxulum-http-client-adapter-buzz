@@ -40,7 +40,6 @@ use Saxulum\HttpClient\Buzz\HttpClient;
 
 $browser = new Browser;
 $httpClient = new HttpClient($browser);
-
 ```
 
 [1]: https://packagist.org/packages/kriswallsmith/buzz
