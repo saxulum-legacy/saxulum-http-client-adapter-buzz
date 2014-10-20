@@ -38,7 +38,7 @@ class HttpClient implements HttpInterface
         );
 
         $buzzRequest->setProtocolVersion($request->getProtocolVersion());
-        $buzzRequest->setHeaders(HeaderConverter::convertHeaders($request->getHeaders()));
+        $buzzRequest->setHeaders(HeaderConverter::convertAssociativeToRaw($request->getHeaders()));
         $buzzRequest->setContent($request->getContent());
 
         /** @var BuzzResponse $buzzResponse */
@@ -48,7 +48,7 @@ class HttpClient implements HttpInterface
             (string) $buzzResponse->getProtocolVersion(),
             $buzzResponse->getStatusCode(),
             $buzzResponse->getReasonPhrase(),
-            HeaderConverter::convertRawHeaders($buzzResponse->getHeaders()),
+            HeaderConverter::convertRawToAssociative($buzzResponse->getHeaders()),
             $buzzResponse->getContent()
         );
     }
