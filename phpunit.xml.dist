@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Saxulum Http Client Adapter Buzz">
-            <directory>./tests/Saxulum/</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <filter>
