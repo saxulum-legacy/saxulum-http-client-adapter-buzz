@@ -6,11 +6,11 @@ use Buzz\Browser;
 use Buzz\Message\Request as BuzzRequest;
 use Buzz\Message\Response as BuzzResponse;
 use Saxulum\HttpClient\HeaderConverter;
-use Saxulum\HttpClient\HttpInterface;
+use Saxulum\HttpClient\HttpClientInterface;
 use Saxulum\HttpClient\Request;
 use Saxulum\HttpClient\Response;
 
-class HttpClient implements HttpInterface
+class HttpClient implements HttpClientInterface
 {
     /**
      * @var Browser
