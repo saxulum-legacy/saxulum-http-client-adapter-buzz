@@ -38,7 +38,11 @@ class HttpClient implements HttpClientInterface
         );
 
         $buzzRequest->setProtocolVersion($request->getProtocolVersion());
-        $buzzRequest->setHeaders(HeaderConverter::convertAssociativeToRaw($request->getHeaders()));
+        $buzzRequest->setHeaders(
+            HeaderConverter::convertAssociativeToRaw(
+                $this->prepareHeaders($request)
+            )
+        );
         $buzzRequest->setContent($request->getContent());
 
         /** @var BuzzResponse $buzzResponse */
@@ -51,5 +55,20 @@ class HttpClient implements HttpClientInterface
             HeaderConverter::convertRawToAssociative($buzzResponse->getHeaders()),
             $buzzResponse->getContent()
         );
+    }
+
+    /**
+     * @param  Request $request
+     * @return array
+     */
+    protected function prepareHeaders(Request $request)
+    {
+        $headers = $request->getHeaders();
+
+        if (null !== $request->getContent() && !isset($headers['Content-Type'])) {
+            $headers['Content-Type'] = 'application/x-www-form-urlencoded';
+        }
+
+        return $headers;
     }
 }
