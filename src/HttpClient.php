@@ -31,6 +31,26 @@ class HttpClient implements HttpClientInterface
      */
     public function request(Request $request)
     {
+        $buzzRequest = $this->prepareRequest($request);
+
+        /** @var BuzzResponse $buzzResponse */
+        $buzzResponse = $this->browser->send($buzzRequest);
+
+        return new Response(
+            (string) $buzzResponse->getProtocolVersion(),
+            $buzzResponse->getStatusCode(),
+            $buzzResponse->getReasonPhrase(),
+            HeaderConverter::convertRawToAssociative($buzzResponse->getHeaders()),
+            $buzzResponse->getContent()
+        );
+    }
+
+    /**
+     * @param  Request     $request
+     * @return BuzzRequest
+     */
+    protected function prepareRequest(Request $request)
+    {
         $buzzRequest = new BuzzRequest(
             $request->getMethod(),
             $request->getUrl()->getResource(),
@@ -45,16 +65,7 @@ class HttpClient implements HttpClientInterface
         );
         $buzzRequest->setContent($request->getContent());
 
-        /** @var BuzzResponse $buzzResponse */
-        $buzzResponse = $this->browser->send($buzzRequest);
-
-        return new Response(
-            (string) $buzzResponse->getProtocolVersion(),
-            $buzzResponse->getStatusCode(),
-            $buzzResponse->getReasonPhrase(),
-            HeaderConverter::convertRawToAssociative($buzzResponse->getHeaders()),
-            $buzzResponse->getContent()
-        );
+        return $buzzRequest;
     }
 
     /**
